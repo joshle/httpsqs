@@ -165,7 +165,7 @@ func (mq *httpsqs) StatusJson(queue string) (res string, err error) {
 
 //View data from queue
 func (mq *httpsqs) View(queue string, pos int) (res string, err error) {
-    query := "name=" + queue + "opt=view&pos=" + string(pos)
+    query := "name=" + queue + "opt=view&pos=" + strconv.Itoa(pos)
     return mq.getString(query)
 }
 
@@ -177,12 +177,12 @@ func (mq *httpsqs) Reset(queue string) (rs bool, err error) {
 
 //Modify the maximum of queue
 func (mq *httpsqs) MaxQueue(queue string, num int) (rs bool, err error) {
-    query := "name=" + queue + "&opt=maxqueue&num=" + string(num)
+    query := "name=" + queue + "&opt=maxqueue&num=" + strconv.Itoa(num)
     return mq.getBool(query, "HTTPSQS_MAXQUEUE_OK")
 }
 
 //Modify the frequecy for httpsqs to save data to disk
 func (mq *httpsqs) SyncTime(num int) (rs bool, err error) {
-    query := "name=httpsqs_synctime&opt=synctime&num=" + string(num)
+    query := "name=httpsqs_synctime&opt=synctime&num=" + strconv.Itoa(num)
     return mq.getBool(query, "HTTPSQS_SYNCTIME_OK")
 }
